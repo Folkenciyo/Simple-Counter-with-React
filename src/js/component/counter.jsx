@@ -3,53 +3,38 @@ import PropTypes from "prop-types";
 
 const Counter = props => {
 	const [seconds, setSeconds] = useState(0);
-	const [isRunning, setIsRunning] = useState(false);
-
 	useEffect(() => {
-		if (isRunning) {
-			const interval = setInterval(() => {
+		const interval = setInterval(() => {
+			if (props.isRunning) {
 				// creamos intervalos
-				if (seconds < 9) {
+				if (seconds != 9) {
 					//si seconds es menor q 9, se le suma 1
 					setSeconds(seconds + 1);
 				} else {
 					//de lo contrario resetea
 					setSeconds(0);
 				}
-			}, 1000);
-		} else {
-			return () => clearInterval(interval); //mato intervalo
-		}
-	}, [seconds]); // keep variable SECONDS (PARRIBA)
-
+			}
+			console.log("A ", props.time);
+		}, props.time * 1000);
+		console.log(props.time);
+		return () => clearInterval(interval); //mato intervalo
+	}, [seconds, props.isRunning]); // keep variable SECONDS (PARRIBA)
+	useEffect(() => {
+		setSeconds(0);
+		return () => clearInterval(seconds); //mato intervalo
+	}, [props.isReset]);
 	return (
 		<div className="number">
 			<span>{seconds}</span>
-			<div className="buttons">
-				<button
-					className="play"
-					onClick={() => {
-						setIsRunning(true);
-					}}>
-					<i className="fas fa-play-circle"></i>
-				</button>
-				<button
-					className="pause"
-					onClick={() => {
-						setIsRunning(false);
-					}}>
-					<i className="fas fa-pause-circle"></i>
-				</button>
-				<button className="reset">
-					<i className="fas fa-power-off"></i>
-				</button>
-			</div>
 		</div>
 	);
 };
-
-Counter.PropType = {
-	start: PropTypes.number
+Counter.propTypes = {
+	//diccionario donde se declaran los PROPS
+	time: PropTypes.number,
+	isRunning: PropTypes.bool,
+	isReset: PropTypes.number
 };
 
 export default Counter;
