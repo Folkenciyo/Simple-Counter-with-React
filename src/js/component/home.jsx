@@ -17,14 +17,14 @@ const Home = () => {
 		<div className="bubbles">
 			<div>
 				<div className="visual">
-					<div>
+					<div className="counters__num">
 						<Counter
-							time={1}
+							time={10000}
 							isRunning={isRunning}
 							isReset={isReset}
 						/>
 						<Counter
-							time={10}
+							time={1000}
 							isRunning={isRunning}
 							isReset={isReset}
 						/>
@@ -36,13 +36,13 @@ const Home = () => {
 						/>
 						;
 						<Counter
-							time={1000}
+							time={10}
 							isRunning={isRunning}
 							isReset={isReset}
 						/>
 						;
 						<Counter
-							time={10000}
+							time={1}
 							isRunning={isRunning}
 							isReset={isReset}
 						/>
@@ -51,20 +51,22 @@ const Home = () => {
 					<div>
 						<div className="buttons">
 							<button
-								className="play"
+								className="button play"
 								onClick={() => {
 									setIsRunning(true);
 								}}>
 								<i className="fas fa-play-circle"></i>
 							</button>
 							<button
-								className="pause"
+								className="button button-2 pause"
 								onClick={() => {
 									setIsRunning(false);
 								}}>
 								<i className="fas fa-pause-circle"></i>
 							</button>
-							<button className="reset" onClick={resetButton}>
+							<button
+								className="button button-3 reset"
+								onClick={resetButton}>
 								<i className="fas fa-power-off"></i>
 							</button>
 						</div>
