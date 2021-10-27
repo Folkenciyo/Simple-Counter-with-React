@@ -15,15 +15,15 @@ const Counter = props => {
 					setSeconds(0);
 				}
 			}
-			console.log("A ", props.time);
 		}, props.time * 1000);
-		console.log(props.time);
 		return () => clearInterval(interval); //mato intervalo
 	}, [seconds, props.isRunning]); // keep variable SECONDS (PARRIBA)
+
 	useEffect(() => {
 		setSeconds(0);
-		return () => clearInterval(seconds); //mato intervalo
+		/* return () => clearInterval(seconds); //mato intervalo */
 	}, [props.isReset]);
+
 	return (
 		<div className="number">
 			<span>{seconds}</span>
